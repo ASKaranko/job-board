@@ -10,7 +10,19 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    ignores: ["eslint.config.mjs"]
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "indent": ["error", 2],
+      "quotes": ["error", "single"],
+      "object-curly-spacing": ["error", "always"],
+      "max-len": ["error", { "code": 150 }],
+      "semi": ["error", "always"],
+    }
+  }
 ];
 
 export default eslintConfig;
