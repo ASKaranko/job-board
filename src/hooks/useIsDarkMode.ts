@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 export function useIsDarkMode() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (typeof window === 'undefined') return false;
+    if (typeof window === 'undefined') return false
 
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  })
 
   useEffect(() => {
-    const controller = new AbortController();
+    const controller = new AbortController()
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener(
       'change',
       (e) => {
-        setIsDarkMode(e.matches);
+        setIsDarkMode(e.matches)
       },
       { signal: controller.signal }
-    );
+    )
 
     return () => {
-      controller.abort();
-    };
-  }, []);
+      controller.abort()
+    }
+  }, [])
 
   return isDarkMode
 }

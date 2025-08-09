@@ -1,5 +1,5 @@
-import { defineConfig } from 'drizzle-kit';
-import { env } from '@/data/env/server';
+import { defineConfig } from 'drizzle-kit'
+import { env } from '@/data/env/server'
 
 export default defineConfig({
   out: './src/drizzle/migrations',
@@ -8,4 +8,4 @@ export default defineConfig({
   dbCredentials: {
     url: env.DATABASE_URL,
   },
-});
+})

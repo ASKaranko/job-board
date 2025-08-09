@@ -8,8 +8,13 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-} from '@/components/ui/sidebar';
-import { AppSidebarClient } from './_AppSidebarClient';
+  SidebarGroup,
+} from '@/components/ui/sidebar'
+import { AppSidebarClient } from './_AppSidebarClient'
+import { LogInIcon } from 'lucide-react'
+import Link from 'next/link'
+import { SignedOut } from './services/clerk/components/SignInStatus'
+
 
 export default function HomePage() {
   return (
@@ -20,11 +25,26 @@ export default function HomePage() {
             <SidebarTrigger></SidebarTrigger>
             <span className='text-xl text-nowrap'>WDS Jobs</span>
           </SidebarHeader>
-          <SidebarContent></SidebarContent>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarMenu>
+                <SignedOut>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <Link href='/sign-in'>
+                        <LogInIcon />
+                        <span>Log In</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SignedOut>
+              </SidebarMenu>
+            </SidebarGroup>
+          </SidebarContent>
           <SidebarFooter>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>dsds</SidebarMenuButton>
+                <SidebarMenuButton></SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
@@ -32,5 +52,5 @@ export default function HomePage() {
         <main className='flex-1'>dsdsdss</main>
       </AppSidebarClient>
     </SidebarProvider>
-  );
+  )
 }

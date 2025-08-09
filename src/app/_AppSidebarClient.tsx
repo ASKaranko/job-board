@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { useIsMobile } from '@/hooks/use-mobile';
-import { ReactNode } from 'react';
-import { SidebarTrigger } from '@/components/ui/sidebar';
+import { useIsMobile } from '@/hooks/use-mobile'
+import { ReactNode } from 'react'
+import { SidebarTrigger } from '@/components/ui/sidebar'
 
 export function AppSidebarClient({ children }: { children: ReactNode }) {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
 
   if (isMobile) {
     return (
@@ -16,8 +16,8 @@ export function AppSidebarClient({ children }: { children: ReactNode }) {
         </div>
         <div className='flex-1 flex'>{children}</div>
       </div>
-    );
+    )
   }
 
-  return children;
+  return children
 }
