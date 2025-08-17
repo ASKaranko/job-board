@@ -13,9 +13,8 @@ import {
 import { AppSidebarClient } from './_AppSidebarClient'
 import { LogInIcon } from 'lucide-react'
 import Link from 'next/link'
-import { SignedOut } from './services/clerk/components/SignInStatus'
+import { SignedIn, SignedOut } from './services/clerk/components/SignInStatus'
 import { SidebarUserButton } from '@/features/users/components/SidebarUserButton'
-
 
 export default function HomePage() {
   return (
@@ -42,13 +41,15 @@ export default function HomePage() {
               </SidebarMenu>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarFooter>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarUserButton />
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarFooter>
+          <SignedIn>
+            <SidebarFooter>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarUserButton />
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarFooter>
+          </SignedIn>
         </Sidebar>
         <main className='flex-1'>dsdsdss</main>
       </AppSidebarClient>

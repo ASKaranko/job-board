@@ -1,5 +1,6 @@
 'use client'
 
+import { SignOutButton } from '@/app/services/clerk/components/AuthButtons'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -9,9 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { SidebarMenu, SidebarMenuButton } from '@/components/ui/sidebar'
-import { useIsMobile } from '@/hooks/use-mobile'
-import { SignOutButton } from '@clerk/nextjs'
+import { SidebarMenuButton, useSidebar } from '@/components/ui/sidebar'
+import { useClerk } from '@clerk/nextjs'
+
 import { ChevronsUpDown, LogOutIcon, SettingsIcon, UserIcon } from 'lucide-react'
 import Link from 'next/link'
 
@@ -22,7 +23,8 @@ type User = {
 }
 
 export function SidebarUserButtonClient({ user }: { user: User }) {
-  const isMobile = useIsMobile()
+  const { isMobile, setOpenMobile } = useSidebar()
+  const { openUserProfile } = useClerk()
 
   return (
     <DropdownMenu>
@@ -41,7 +43,12 @@ export function SidebarUserButtonClient({ user }: { user: User }) {
           <UserInfo {...user} />
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => openUserProfile()}>
+        <DropdownMenuItem
+          onClick={() => {
+            openUserProfile()
+            setOpenMobile(false)
+          }}
+        >
           <UserIcon className='mr-1' /> Profile
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
